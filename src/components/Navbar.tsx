@@ -172,6 +172,10 @@ export default function Navbar() {
                     <p className="text-sm font-medium text-gray-900 dark:text-white">Guest User</p>
                     <p className="text-sm text-gray-500 dark:text-gray-400">guest@example.com</p>
                   </div>
+                  <Link href="/quiz" className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
+                    <Brain className="h-4 w-4 mr-3" />
+                    Dashboard
+                  </Link>
                   <button className="flex items-center w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-200">
                     <Settings className="h-4 w-4 mr-3" />
                     {t('nav.settings')}

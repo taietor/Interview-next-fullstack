@@ -57,7 +57,7 @@ export async function CategoryList({ showStats = true }: CategoryListProps) {
           href={`/quiz/${category.slug}`}
           className="group"
         >
-          <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-gray-200">
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-gray-200 dark:hover:border-gray-600">
             {/* Header with gradient */}
             <div className={`bg-gradient-to-r ${category.color} p-6 text-white`}>
               <div className="flex items-center justify-between mb-2">
@@ -69,7 +69,7 @@ export async function CategoryList({ showStats = true }: CategoryListProps) {
             
             {/* Content */}
             <div className="p-6">
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 leading-relaxed">
                 {category.description}
               </p>
               
@@ -77,34 +77,34 @@ export async function CategoryList({ showStats = true }: CategoryListProps) {
                 <div className="space-y-3">
                   {/* Total Questions */}
                   <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2 text-gray-500">
+                    <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400">
                       <Target className="w-4 h-4" />
                       <span>Domande totali</span>
                     </div>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-gray-900 dark:text-gray-100">
                       {category.stats.total}
                     </span>
                   </div>
                   
                   {/* Difficulty Breakdown */}
                   <div className="grid grid-cols-3 gap-2 text-xs">
-                    <div className="text-center p-2 bg-green-50 rounded">
-                      <div className="font-medium text-green-700">
+                    <div className="text-center p-2 bg-green-50 dark:bg-green-900/20 rounded">
+                      <div className="font-medium text-green-700 dark:text-green-400">
                         {category.stats.byDifficulty.easy || 0}
                       </div>
-                      <div className="text-green-600">Facile</div>
+                      <div className="text-green-600 dark:text-green-300">Facile</div>
                     </div>
-                    <div className="text-center p-2 bg-yellow-50 rounded">
-                      <div className="font-medium text-yellow-700">
+                    <div className="text-center p-2 bg-yellow-50 dark:bg-yellow-900/20 rounded">
+                      <div className="font-medium text-yellow-700 dark:text-yellow-400">
                         {category.stats.byDifficulty.medium || 0}
                       </div>
-                      <div className="text-yellow-600">Medio</div>
+                      <div className="text-yellow-600 dark:text-yellow-300">Medio</div>
                     </div>
-                    <div className="text-center p-2 bg-red-50 rounded">
-                      <div className="font-medium text-red-700">
+                    <div className="text-center p-2 bg-red-50 dark:bg-red-900/20 rounded">
+                      <div className="font-medium text-red-700 dark:text-red-400">
                         {category.stats.byDifficulty.hard || 0}
                       </div>
-                      <div className="text-red-600">Difficile</div>
+                      <div className="text-red-600 dark:text-red-300">Difficile</div>
                     </div>
                   </div>
                   
@@ -113,13 +113,13 @@ export async function CategoryList({ showStats = true }: CategoryListProps) {
                     {Object.keys(category.stats.byTag).slice(0, 3).map((tag) => (
                       <span 
                         key={tag}
-                        className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
+                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full"
                       >
                         {tag}
                       </span>
                     ))}
                     {Object.keys(category.stats.byTag).length > 3 && (
-                      <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
+                      <span className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">
                         +{Object.keys(category.stats.byTag).length - 3}
                       </span>
                     )}
@@ -129,13 +129,13 @@ export async function CategoryList({ showStats = true }: CategoryListProps) {
             </div>
             
             {/* Footer */}
-            <div className="px-6 py-4 bg-gray-50 border-t border-gray-100">
-              <div className="flex items-center justify-between text-sm text-gray-500">
+            <div className="px-6 py-4 bg-gray-50 dark:bg-gray-700/50 border-t border-gray-100 dark:border-gray-600">
+              <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
                 <div className="flex items-center gap-1">
                   <Clock className="w-4 h-4" />
                   <span>~15-30 min</span>
                 </div>
-                <span className="text-primary-600 font-medium group-hover:text-primary-700">
+                <span className="text-primary-600 dark:text-primary-400 font-medium group-hover:text-primary-700 dark:group-hover:text-primary-300">
                   Inizia Quiz →
                 </span>
               </div>

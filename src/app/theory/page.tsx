@@ -153,29 +153,29 @@ export default function TheoryPage() {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Principiante':
-        return 'bg-green-100 text-green-800'
+        return 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300'
       case 'Intermedio':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300'
       case 'Avanzato':
-        return 'bg-red-100 text-red-800'
+        return 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
     }
   }
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-primary-50 to-white py-16">
+        <div className="bg-gradient-to-b from-primary-50 to-white dark:from-gray-900 dark:to-gray-800 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Teoria e Concetti
-                <span className="text-primary-600"> Fullstack</span>
+                <span className="text-primary-600 dark:text-primary-400"> Fullstack</span>
               </h1>
-              <p className="max-w-2xl mx-auto text-lg text-gray-600">
+              <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
                 Approfondisci i concetti teorici fondamentali per il web development moderno.
                 Spiegazioni chiare, esempi pratici e best practices per ogni argomento.
               </p>
@@ -189,14 +189,14 @@ export default function TheoryPage() {
             {theoryTopics.map((category) => (
               <div key={category.category} className="card p-8">
                 <div className="flex items-center mb-6">
-                  <div className={`p-3 rounded-lg ${category.bgColor} mr-4`}>
-                    <category.icon className={`h-8 w-8 ${category.color}`} />
+                  <div className={`p-3 rounded-lg ${category.bgColor} dark:bg-opacity-20 mr-4`}>
+                    <category.icon className={`h-8 w-8 ${category.color} dark:text-opacity-80`} />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-gray-900">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
                       {category.category}
                     </h2>
-                    <p className="text-gray-600">{category.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{category.description}</p>
                   </div>
                 </div>
 
@@ -204,16 +204,16 @@ export default function TheoryPage() {
                   {category.topics.map((topic) => (
                     <div
                       key={topic.title}
-                      className="p-6 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200 cursor-pointer group"
+                      className="p-6 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors duration-200 cursor-pointer group"
                     >
                       <div className="flex items-start justify-between mb-3">
-                        <h3 className="font-semibold text-gray-900 group-hover:text-primary-600 transition-colors duration-200">
+                        <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200">
                           {topic.title}
                         </h3>
-                        <ArrowRight className="h-4 w-4 text-gray-400 group-hover:text-primary-600 transition-colors duration-200" />
+                        <ArrowRight className="h-4 w-4 text-gray-400 dark:text-gray-500 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors duration-200" />
                       </div>
                       
-                      <p className="text-gray-600 text-sm mb-4">
+                      <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
                         {topic.description}
                       </p>
                       
@@ -239,52 +239,52 @@ export default function TheoryPage() {
         </div>
 
         {/* Study Tips */}
-        <div className="bg-white py-16">
+        <div className="bg-white dark:bg-gray-800 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Come Studiare Efficacemente
               </h2>
-              <p className="max-w-2xl mx-auto text-lg text-gray-600">
+              <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
                 Suggerimenti per massimizzare il tuo apprendimento e prepararti al meglio per i colloqui.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">📚</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Teoria Prima
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Studia i concetti teorici prima di fare i quiz. 
                   Comprendi il "perché" dietro ogni soluzione.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-green-100 dark:bg-green-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">💻</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Pratica Attiva
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Scrivi codice, fai esperimenti. La programmazione 
                   si impara facendo, non solo leggendo.
                 </p>
               </div>
 
               <div className="text-center">
-                <div className="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-16 h-16 bg-yellow-100 dark:bg-yellow-900/20 rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl">🔄</span>
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
                   Ripeti Spesso
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Ripassa regolarmente i concetti. La ripetizione 
                   spaziata è la chiave per la memorizzazione.
                 </p>

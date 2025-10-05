@@ -494,44 +494,44 @@ export default function ExamplesPage() {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case 'Principiante':
-        return 'bg-green-100 text-green-800'
+        return 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300'
       case 'Intermedio':
-        return 'bg-yellow-100 text-yellow-800'
+        return 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300'
       case 'Avanzato':
-        return 'bg-red-100 text-red-800'
+        return 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
     }
   }
 
   const getCategoryColor = (category: string) => {
     switch (category) {
       case 'React':
-        return 'bg-blue-100 text-blue-800'
+        return 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300'
       case 'Next.js':
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
       case 'Database':
-        return 'bg-purple-100 text-purple-800'
+        return 'bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-300'
       case 'DevOps':
-        return 'bg-orange-100 text-orange-800'
+        return 'bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-300'
       default:
-        return 'bg-gray-100 text-gray-800'
+        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
     }
   }
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50">
+      <main className="min-h-screen bg-gray-50 dark:bg-gray-900">
         {/* Hero Section */}
-        <div className="bg-gradient-to-b from-primary-50 to-white py-16">
+        <div className="bg-gradient-to-b from-primary-50 to-white dark:from-gray-900 dark:to-gray-800 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
                 Esempi di 
-                <span className="text-primary-600"> Codice</span>
+                <span className="text-primary-600 dark:text-primary-400"> Codice</span>
               </h1>
-              <p className="max-w-2xl mx-auto text-lg text-gray-600">
+              <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
                 Collezione di esempi pratici e pattern comuni per lo sviluppo fullstack.
                 Codice pronto all'uso con spiegazioni dettagliate.
               </p>
@@ -547,10 +547,10 @@ export default function ExamplesPage() {
                 {/* Header */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
                   <div className="mb-4 sm:mb-0">
-                    <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       {example.title}
                     </h2>
-                    <p className="text-gray-600">{example.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{example.description}</p>
                   </div>
                   
                   <div className="flex items-center space-x-2">
@@ -568,7 +568,7 @@ export default function ExamplesPage() {
                   {example.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-gray-100 text-gray-600 rounded text-sm"
+                      className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded text-sm"
                     >
                       #{tag}
                     </span>
@@ -599,8 +599,8 @@ export default function ExamplesPage() {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-200">
-                  <div className="text-sm text-gray-500">
+                <div className="flex items-center justify-between mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+                  <div className="text-sm text-gray-500 dark:text-gray-400">
                     💡 Prova questo codice nel tuo progetto
                   </div>
                   
@@ -622,12 +622,12 @@ export default function ExamplesPage() {
         </div>
 
         {/* More Examples CTA */}
-        <div className="bg-white py-16">
+        <div className="bg-white dark:bg-gray-800 py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Vuoi vedere più esempi?
             </h2>
-            <p className="max-w-2xl mx-auto text-lg text-gray-600 mb-8">
+            <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-8">
               Abbiamo preparato centinaia di esempi per ogni scenario di sviluppo.
               Inizia con i quiz per scoprire i tuoi punti di forza e debolezza.
             </p>

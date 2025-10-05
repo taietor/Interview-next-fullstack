@@ -123,13 +123,13 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
     return (
       <>
         <Navbar />
-        <main className="min-h-screen bg-gray-50 py-8">
+        <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
           <div className="max-w-4xl mx-auto px-4">
             <div className="text-center mb-8">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
                 Quiz {categoryDisplayName}
               </h1>
-              <p className="text-lg text-gray-600">
+              <p className="text-lg text-gray-600 dark:text-gray-300">
                 Testa le tue competenze in {categoryDisplayName.toLowerCase()} 
                 con domande pratiche e teoriche
               </p>
@@ -137,11 +137,11 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
 
             <div className="card p-8 max-w-2xl mx-auto">
               <div className="text-center mb-8">
-                <Brain className="h-16 w-16 text-primary-600 mx-auto mb-4" />
-                <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+                <Brain className="h-16 w-16 text-primary-600 dark:text-primary-400 mx-auto mb-4" />
+                <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2">
                   Inizia il Quiz
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-300">
                   Scegli il numero di domande e inizia l'allenamento
                 </p>
               </div>
@@ -149,33 +149,33 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                 <button
                   onClick={() => initializeQuiz(5)}
-                  className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors duration-200"
+                  className="p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors duration-200"
                 >
-                  <Target className="h-8 w-8 text-primary-600 mx-auto mb-2" />
-                  <div className="font-semibold">Quiz Rapido</div>
-                  <div className="text-sm text-gray-600">5 domande</div>
+                  <Target className="h-8 w-8 text-primary-600 dark:text-primary-400 mx-auto mb-2" />
+                  <div className="font-semibold text-gray-900 dark:text-white">Quiz Rapido</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">5 domande</div>
                 </button>
                 
                 <button
                   onClick={() => initializeQuiz(10)}
-                  className="p-4 border-2 border-primary-500 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors duration-200"
+                  className="p-4 border-2 border-primary-500 bg-primary-50 dark:bg-primary-900/20 rounded-lg hover:bg-primary-100 dark:hover:bg-primary-900/30 transition-colors duration-200"
                 >
-                  <Brain className="h-8 w-8 text-primary-600 mx-auto mb-2" />
-                  <div className="font-semibold">Quiz Standard</div>
-                  <div className="text-sm text-gray-600">10 domande</div>
+                  <Brain className="h-8 w-8 text-primary-600 dark:text-primary-400 mx-auto mb-2" />
+                  <div className="font-semibold text-gray-900 dark:text-white">Quiz Standard</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">10 domande</div>
                 </button>
                 
                 <button
                   onClick={() => initializeQuiz(20)}
-                  className="p-4 border-2 border-gray-200 rounded-lg hover:border-primary-500 hover:bg-primary-50 transition-colors duration-200"
+                  className="p-4 border-2 border-gray-200 dark:border-gray-700 rounded-lg hover:border-primary-500 hover:bg-primary-50 dark:hover:bg-primary-900/20 transition-colors duration-200"
                 >
-                  <Clock className="h-8 w-8 text-primary-600 mx-auto mb-2" />
-                  <div className="font-semibold">Quiz Completo</div>
-                  <div className="text-sm text-gray-600">20 domande</div>
+                  <Clock className="h-8 w-8 text-primary-600 dark:text-primary-400 mx-auto mb-2" />
+                  <div className="font-semibold text-gray-900 dark:text-white">Quiz Completo</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-300">20 domande</div>
                 </button>
               </div>
 
-              <div className="text-center text-sm text-gray-500">
+              <div className="text-center text-sm text-gray-500 dark:text-gray-400">
                 <p>💡 Consiglio: Inizia con il quiz rapido per familiarizzare</p>
               </div>
             </div>
@@ -194,7 +194,7 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
     return (
       <>
         <Navbar />
-        <main className="min-h-screen bg-gray-50 py-8">
+        <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
           <QuizResults
             results={results}
             category={categoryDisplayName}
@@ -219,21 +219,21 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gray-50 py-8">
+      <main className="min-h-screen bg-gray-50 dark:bg-gray-900 py-8">
         <div className="max-w-6xl mx-auto px-4">
           {/* Quiz Header */}
           <div className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
                 Quiz {categoryDisplayName}
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 Domanda {currentQuestionIndex + 1} di {session.questions.length}
               </p>
             </div>
             
             <div className="flex items-center space-x-6">
-              <div className="flex items-center text-gray-600">
+              <div className="flex items-center text-gray-600 dark:text-gray-300">
                 <Clock className="h-5 w-5 mr-2" />
                 <span className="font-mono">{formatTime(timeSpent)}</span>
               </div>
@@ -244,8 +244,8 @@ export default function Quiz({ category, categoryDisplayName }: QuizProps) {
                   disabled={selectedAnswer === undefined || showResult}
                   className={`px-4 py-2 rounded-lg font-medium transition-colors duration-200 ${
                     selectedAnswer !== undefined && !showResult
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      ? 'bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600'
+                      : 'bg-gray-100 dark:bg-gray-800 text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   }`}
                 >
                   Mostra Risposta
