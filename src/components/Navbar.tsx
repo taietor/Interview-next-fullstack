@@ -37,6 +37,7 @@ export default function Navbar() {
     { name: t('nav.quizDevops'), href: '/quiz/devops' },
     { name: t('nav.theory'), href: '/theory' },
     { name: t('nav.examples'), href: '/examples' },
+    { name: 'Copilot Guide', href: '/copilot-guide' },
   ]
 
   // Close dropdowns when clicking outside

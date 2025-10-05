@@ -1,10 +1,12 @@
 'use client'
 
+import Link from 'next/link'
 import { 
   Code, 
   Brain, 
   BookOpen, 
   Cloud,
+  Zap,
 } from 'lucide-react'
 
 export function FeaturesSection() {
@@ -15,6 +17,7 @@ export function FeaturesSection() {
       icon: Brain,
       color: 'text-blue-600 dark:text-blue-400',
       bgColor: 'bg-blue-100 dark:bg-blue-900/20',
+      href: '/quiz',
     },
     {
       name: 'Esempi di Codice',
@@ -22,6 +25,7 @@ export function FeaturesSection() {
       icon: Code,
       color: 'text-green-600 dark:text-green-400',
       bgColor: 'bg-green-100 dark:bg-green-900/20',
+      href: '/examples',
     },
     {
       name: 'Spiegazioni Dettagliate',
@@ -29,6 +33,7 @@ export function FeaturesSection() {
       icon: BookOpen,
       color: 'text-purple-600 dark:text-purple-400',
       bgColor: 'bg-purple-100 dark:bg-purple-900/20',
+      href: '/theory',
     },
     {
       name: 'Tecnologie Moderne',
@@ -36,6 +41,15 @@ export function FeaturesSection() {
       icon: Cloud,
       color: 'text-orange-600 dark:text-orange-400',
       bgColor: 'bg-orange-100 dark:bg-orange-900/20',
+      href: '/quiz',
+    },
+    {
+      name: 'Copilot Guide',
+      description: 'Potenzia GitHub Copilot con MCP, addestramento locale e tecniche avanzate',
+      icon: Zap,
+      color: 'text-yellow-600 dark:text-yellow-400',
+      bgColor: 'bg-yellow-100 dark:bg-yellow-900/20',
+      href: '/copilot-guide',
     },
   ]
 
@@ -52,11 +66,12 @@ export function FeaturesSection() {
           </p>
         </div>
         
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
           {features.map((feature) => (
-            <div
+            <Link
               key={feature.name}
-              className="card p-6 text-center hover:shadow-md transition-shadow duration-200"
+              href={feature.href}
+              className="card p-6 text-center hover:shadow-md transition-shadow duration-200 block"
             >
               <div className={`mx-auto h-12 w-12 rounded-lg ${feature.bgColor} flex items-center justify-center mb-4`}>
                 <feature.icon className={`h-6 w-6 ${feature.color}`} />
@@ -67,7 +82,7 @@ export function FeaturesSection() {
               <p className="text-gray-600 dark:text-gray-300">
                 {feature.description}
               </p>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
