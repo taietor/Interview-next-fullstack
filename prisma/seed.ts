@@ -83,8 +83,10 @@ async function main() {
   console.log(`✅ Seeded ${totalQuestions} questions`)
 
   // Create some example users and quiz sessions for testing
-  const testUser = await prisma.user.create({
-    data: {
+  const testUser = await prisma.user.upsert({
+    where: { email: 'test@example.com' },
+    update: {},
+    create: {
       email: 'test@example.com',
       name: 'Test User',
     },

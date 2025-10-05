@@ -13,7 +13,7 @@ export const frontendQuestions: Question[] = [
     correct: 1,
     explanation: 'useState causa un re-render del componente quando il suo valore cambia, mentre useRef mantiene un riferimento mutabile che non causa re-render quando viene modificato. useRef è utile per accedere a elementi DOM o mantenere valori tra render senza triggeare aggiornamenti.',
     difficulty: 'medium',
-    category: 'React',
+    category: 'frontend',
     tags: ['hooks', 'state', 'ref']
   },
   {
@@ -62,7 +62,7 @@ function useLocalStorage<T>(key: string, initialValue: T) {
 }
 \`\`\``,
     difficulty: 'hard',
-    category: 'React',
+    category: 'frontend',
     tags: ['custom-hooks', 'localStorage', 'typescript']
   },
   {
@@ -87,7 +87,7 @@ Usa getStaticProps quando:
 - La velocità è prioritaria
 - Puoi pre-generare il contenuto`,
     difficulty: 'medium',
-    category: 'Next.js',
+    category: 'frontend',
     tags: ['ssr', 'ssg', 'data-fetching']
   },
   {
@@ -132,7 +132,7 @@ type ReadonlyUser = DeepReadonly<User>
 // }
 \`\`\``,
     difficulty: 'hard',
-    category: 'TypeScript',
+    category: 'frontend',
     tags: ['utility-types', 'conditional-types', 'recursion']
   },
   {
@@ -163,7 +163,7 @@ Vantaggi:
 
 Flexbox è ottimo per layout 1D, ma Grid è superiore per layout 2D complessi.`,
     difficulty: 'medium',
-    category: 'CSS',
+    category: 'frontend',
     tags: ['grid', 'responsive', 'layout']
   },
   {
@@ -207,7 +207,7 @@ const Modal = React.lazy(() => import('./Modal'))
 - Ottimizzazione immagini (next/image)
 - Bundle analysis con webpack-bundle-analyzer`,
     difficulty: 'hard',
-    category: 'Performance',
+    category: 'frontend',
     tags: ['lazy-loading', 'code-splitting', 'optimization']
   }
 ]
@@ -248,7 +248,7 @@ setImmediate
 
 **Attenzione:** Troppi process.nextTick possono bloccare l'event loop!`,
     difficulty: 'hard',
-    category: 'Node.js',
+    category: 'backend',
     tags: ['event-loop', 'async', 'performance']
   },
   {
@@ -310,7 +310,7 @@ const [users, total] = await Promise.all([
 ])
 \`\`\``,
     difficulty: 'medium',
-    category: 'API Design',
+    category: 'backend',
     tags: ['rest', 'pagination', 'prisma']
   }
 ]
@@ -388,7 +388,7 @@ const post = await prisma.post.create({
 
 Prisma automaticamente ottimizza le query usando JOINs quando possibile.`,
     difficulty: 'hard',
-    category: 'Prisma',
+    category: 'database',
     tags: ['query-optimization', 'n+1', 'relations']
   }
 ]
@@ -433,7 +433,7 @@ ADD https://example.com/file.tar.gz /tmp/
 3. **Cache**: Migliore cache Docker
 4. **Debugging**: Più facile da debuggare`,
     difficulty: 'medium',
-    category: 'Docker',
+    category: 'devops',
     tags: ['dockerfile', 'best-practices', 'security']
   }
 ]
