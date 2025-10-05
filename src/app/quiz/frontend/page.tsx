@@ -1,5 +1,5 @@
-import Quiz from '@/components/quiz/Quiz'
+import { ServerQuiz } from '@/components/server/ServerQuiz'
 
 export default function FrontendQuizPage() {
-  return <Quiz category="frontend" categoryDisplayName="Frontend" />
+  return <ServerQuiz category="frontend" categoryDisplayName="Frontend Development" />
 }

@@ -1,5 +1,5 @@
-import Quiz from '@/components/quiz/Quiz'
+import { ServerQuiz } from '@/components/server/ServerQuiz'
 
 export default function DatabaseQuizPage() {
-  return <Quiz category="database" categoryDisplayName="Database" />
+  return <ServerQuiz category="database" categoryDisplayName="Database & Storage" />
 }

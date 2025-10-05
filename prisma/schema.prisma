@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Quiz relations
+  quizSessions QuizSession[]
+  
+  @@map("users")
+}
+
+model Question {
+  id          String   @id @default(cuid())
+  question    String
+  options     String[] // Array di opzioni
+  correct     Int      // Indice della risposta corretta
+  explanation String
+  difficulty  String   // 'easy', 'medium', 'hard'
+  category    String   // 'frontend', 'backend', 'database', 'devops'
+  tags        String[] // Array di tag
+  code        String?  // Codice opzionale per la domanda
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Quiz relations
+  quizAnswers QuizAnswer[]
+  
+  @@map("questions")
+}
+
+model QuizSession {
+  id            String   @id @default(cuid())
+  userId        String?
+  category      String
+  totalQuestions Int
+  correctAnswers Int
+  score         Int      // Percentuale
+  timeSpent     Int      // Secondi
+  completedAt   DateTime @default(now())
+
+  // Relations
+  user    User?        @relation(fields: [userId], references: [id])
+  answers QuizAnswer[]
+  
+  @@map("quiz_sessions")
+}
+
+model QuizAnswer {
+  id           String @id @default(cuid())
+  sessionId    String
+  questionId   String
+  userAnswer   Int    // Indice della risposta dell'utente
+  isCorrect    Boolean
+  timeSpent    Int?   // Secondi per rispondere
+
+  // Relations
+  session  QuizSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id])
+  
+  @@unique([sessionId, questionId])
+  @@map("quiz_answers")
+}

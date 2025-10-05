@@ -13,6 +13,8 @@ import {
   Zap,
   Target
 } from 'lucide-react'
+import { QuizStats } from '@/components/server/QuizStats'
+import { CategoryList } from '@/components/server/CategoryList'
 
 const features = [
   {
@@ -45,19 +47,7 @@ const features = [
   },
 ]
 
-const stats = [
-  { name: 'Quiz Disponibili', value: '200+' },
-  { name: 'Esempi di Codice', value: '150+' },
-  { name: 'Tecnologie Coperte', value: '20+' },
-  { name: 'Livelli di Difficoltà', value: '3' },
-]
 
-const topics = [
-  { name: 'Frontend', icon: Code, description: 'React, Next.js, TypeScript, Tailwind CSS' },
-  { name: 'Backend', icon: Server, description: 'Node.js, Express, API REST, GraphQL' },
-  { name: 'Database', icon: Database, description: 'Prisma, PostgreSQL, MongoDB, Redis' },
-  { name: 'DevOps', icon: Cloud, description: 'Docker, AWS, Azure, Kubernetes, CI/CD' },
-]
 
 export default function HomePage() {
   return (
@@ -95,22 +85,7 @@ export default function HomePage() {
         </div>
 
         {/* Stats Section */}
-        <div className="bg-white py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-              {stats.map((stat) => (
-                <div key={stat.name} className="text-center">
-                  <div className="text-3xl font-bold text-primary-600">
-                    {stat.value}
-                  </div>
-                  <div className="mt-2 text-sm text-gray-600">
-                    {stat.name}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        <QuizStats />
 
         {/* Features Section */}
         <div className="bg-gray-50 py-16">
@@ -159,30 +134,7 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-              {topics.map((topic) => (
-                <Link
-                  key={topic.name}
-                  href={`/quiz/${topic.name.toLowerCase()}`}
-                  className="card p-6 hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
-                >
-                  <div className="flex items-center mb-4">
-                    <topic.icon className="h-8 w-8 text-primary-600 mr-3" />
-                    <h3 className="text-xl font-semibold text-gray-900">
-                      {topic.name}
-                    </h3>
-                  </div>
-                  <p className="text-gray-600">
-                    {topic.description}
-                  </p>
-                  <div className="mt-4">
-                    <span className="text-primary-600 font-medium">
-                      Inizia Quiz →
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <CategoryList />
           </div>
         </div>
 

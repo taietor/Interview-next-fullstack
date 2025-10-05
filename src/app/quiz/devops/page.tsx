@@ -1,5 +1,5 @@
-import Quiz from '@/components/quiz/Quiz'
+import { ServerQuiz } from '@/components/server/ServerQuiz'
 
 export default function DevOpsQuizPage() {
-  return <Quiz category="devops" categoryDisplayName="DevOps" />
+  return <ServerQuiz category="devops" categoryDisplayName="DevOps & Cloud" />
 }

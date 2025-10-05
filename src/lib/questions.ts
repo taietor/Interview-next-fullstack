@@ -438,6 +438,7 @@ ADD https://example.com/file.tar.gz /tmp/
   }
 ]
 
+// Funzioni per il fallback (quando il database non è disponibile)
 export function getQuestionsByCategory(category: string): Question[] {
   switch (category.toLowerCase()) {
     case 'frontend':
@@ -452,6 +453,8 @@ export function getQuestionsByCategory(category: string): Question[] {
       return []
   }
 }
+
+// Le domande sono già esportate sopra come export const
 
 export function shuffleArray<T>(array: T[]): T[] {
   const shuffled = [...array]

@@ -54,3 +54,5 @@ logs
 # Backup files
 *.bak
 *.tmp
+
+/generated/prisma
