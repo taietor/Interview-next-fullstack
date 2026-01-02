@@ -269,9 +269,7 @@ model Follow {
 }
 
 // Esempi di query avanzate
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { prisma } from '@/lib/prisma'
 
 // Query con relazioni nested
 async function getUserWithPosts(userId: string) {
