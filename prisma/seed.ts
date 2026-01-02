@@ -1,18 +1,23 @@
-import { PrismaClient } from '../src/generated/prisma/client'
-import { PrismaPg } from '@prisma/adapter-pg'
-import { frontendQuestions, backendQuestions, databaseQuestions, devopsQuestions } from '../src/lib/questions'
-import 'dotenv/config'
+import { PrismaClient } from "../src/generated/prisma/client";
+import { PrismaPg } from "@prisma/adapter-pg";
+import {
+  frontendQuestions,
+  backendQuestions,
+  databaseQuestions,
+  devopsQuestions,
+} from "../src/lib/questions";
+import "dotenv/config";
 
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! })
-const prisma = new PrismaClient({ adapter })
+const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL! });
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log('🌱 Seeding database...')
+  console.log("🌱 Seeding database...");
 
   // Clear existing questions
-  await prisma.quizAnswer.deleteMany()
-  await prisma.quizSession.deleteMany()
-  await prisma.question.deleteMany()
+  await prisma.quizAnswer.deleteMany();
+  await prisma.quizSession.deleteMany();
+  await prisma.question.deleteMany();
 
   // Insert frontend questions
   for (const question of frontendQuestions) {
@@ -28,7 +33,7 @@ async function main() {
         tags: question.tags,
         code: question.code,
       },
-    })
+    });
   }
 
   // Insert backend questions
@@ -45,7 +50,7 @@ async function main() {
         tags: question.tags,
         code: question.code,
       },
-    })
+    });
   }
 
   // Insert database questions
@@ -62,7 +67,7 @@ async function main() {
         tags: question.tags,
         code: question.code,
       },
-    })
+    });
   }
 
   // Insert devops questions
@@ -79,41 +84,41 @@ async function main() {
         tags: question.tags,
         code: question.code,
       },
-    })
+    });
   }
 
-  const totalQuestions = await prisma.question.count()
-  console.log(`✅ Seeded ${totalQuestions} questions`)
+  const totalQuestions = await prisma.question.count();
+  console.log(`✅ Seeded ${totalQuestions} questions`);
 
   // Create some example users and quiz sessions for testing
   const testUser = await prisma.user.upsert({
-    where: { email: 'test@example.com' },
+    where: { email: "test@example.com" },
     update: {},
     create: {
-      email: 'test@example.com',
-      name: 'Test User',
+      email: "test@example.com",
+      name: "Test User",
     },
-  })
+  });
 
   await prisma.quizSession.create({
     data: {
       userId: testUser.id,
-      category: 'frontend',
+      category: "frontend",
       totalQuestions: 10,
       correctAnswers: 8,
       score: 80,
       timeSpent: 600, // 10 minutes
     },
-  })
+  });
 
-  console.log('✅ Seeded test user and quiz session')
+  console.log("✅ Seeded test user and quiz session");
 }
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });

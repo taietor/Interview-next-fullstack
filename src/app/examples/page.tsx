@@ -1,16 +1,17 @@
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Link from 'next/link'
-import { Code, Copy, ExternalLink, Github } from 'lucide-react'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+import { Code, Copy, ExternalLink, Github } from "lucide-react";
 
 const codeExamples = [
   {
-    id: 'react-custom-hook',
-    title: 'Custom Hook per API Calls',
-    description: 'Un hook riusabile per gestire chiamate API con loading, error e data state',
-    category: 'React',
-    difficulty: 'Intermedio',
-    tags: ['hooks', 'api', 'typescript'],
+    id: "react-custom-hook",
+    title: "Custom Hook per API Calls",
+    description:
+      "Un hook riusabile per gestire chiamate API con loading, error e data state",
+    category: "React",
+    difficulty: "Intermedio",
+    tags: ["hooks", "api", "typescript"],
     code: `import { useState, useEffect } from 'react'
 
 interface UseApiResult<T> {
@@ -66,15 +67,16 @@ function UserProfile({ userId }: { userId: string }) {
       <button onClick={refetch}>Refresh</button>
     </div>
   )
-}`
+}`,
   },
   {
-    id: 'nextjs-api-route',
-    title: 'API Route con Validation',
-    description: 'API route Next.js con validazione TypeScript e error handling',
-    category: 'Next.js',
-    difficulty: 'Intermedio',
-    tags: ['api', 'validation', 'typescript'],
+    id: "nextjs-api-route",
+    title: "API Route con Validation",
+    description:
+      "API route Next.js con validazione TypeScript e error handling",
+    category: "Next.js",
+    difficulty: "Intermedio",
+    tags: ["api", "validation", "typescript"],
     code: `// pages/api/users/[id].ts
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { z } from 'zod'
@@ -181,15 +183,15 @@ async function updateUser(
     }
     throw error
   }
-}`
+}`,
   },
   {
-    id: 'prisma-relations',
-    title: 'Prisma Relations Avanzate',
-    description: 'Gestione di relazioni complesse con Prisma ORM',
-    category: 'Database',
-    difficulty: 'Avanzato',
-    tags: ['prisma', 'relations', 'database'],
+    id: "prisma-relations",
+    title: "Prisma Relations Avanzate",
+    description: "Gestione di relazioni complesse con Prisma ORM",
+    category: "Database",
+    difficulty: "Avanzato",
+    tags: ["prisma", "relations", "database"],
     code: `// schema.prisma
 model User {
   id        String   @id @default(cuid())
@@ -368,15 +370,16 @@ async function createPostWithTags(
 
     return post
   })
-}`
+}`,
   },
   {
-    id: 'docker-nextjs',
-    title: 'Dockerfile per Next.js',
-    description: 'Dockerfile ottimizzato per applicazioni Next.js in produzione',
-    category: 'DevOps',
-    difficulty: 'Intermedio',
-    tags: ['docker', 'nextjs', 'production'],
+    id: "docker-nextjs",
+    title: "Dockerfile per Next.js",
+    description:
+      "Dockerfile ottimizzato per applicazioni Next.js in produzione",
+    category: "DevOps",
+    difficulty: "Intermedio",
+    tags: ["docker", "nextjs", "production"],
     code: `# Dockerfile multi-stage per Next.js
 FROM node:18-alpine AS base
 
@@ -484,38 +487,38 @@ Dockerfile
 npm-debug.log
 .nyc_output
 .coverage
-.coverage.*`
-  }
-]
+.coverage.*`,
+  },
+];
 
 export default function ExamplesPage() {
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'Principiante':
-        return 'bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300'
-      case 'Intermedio':
-        return 'bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300'
-      case 'Avanzato':
-        return 'bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300'
+      case "Principiante":
+        return "bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300";
+      case "Intermedio":
+        return "bg-yellow-100 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300";
+      case "Avanzato":
+        return "bg-red-100 dark:bg-red-900/20 text-red-800 dark:text-red-300";
       default:
-        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
+        return "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300";
     }
-  }
+  };
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'React':
-        return 'bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300'
-      case 'Next.js':
-        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
-      case 'Database':
-        return 'bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-300'
-      case 'DevOps':
-        return 'bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-300'
+      case "React":
+        return "bg-blue-100 dark:bg-blue-900/20 text-blue-800 dark:text-blue-300";
+      case "Next.js":
+        return "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300";
+      case "Database":
+        return "bg-purple-100 dark:bg-purple-900/20 text-purple-800 dark:text-purple-300";
+      case "DevOps":
+        return "bg-orange-100 dark:bg-orange-900/20 text-orange-800 dark:text-orange-300";
       default:
-        return 'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
+        return "bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300";
     }
-  }
+  };
 
   return (
     <>
@@ -526,12 +529,15 @@ export default function ExamplesPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Esempi di 
-                <span className="text-primary-600 dark:text-primary-400"> Codice</span>
+                Esempi di
+                <span className="text-primary-600 dark:text-primary-400">
+                  {" "}
+                  Codice
+                </span>
               </h1>
               <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-                Collezione di esempi pratici e pattern comuni per lo sviluppo fullstack.
-                Codice pronto all'uso con spiegazioni dettagliate.
+                Collezione di esempi pratici e pattern comuni per lo sviluppo
+                fullstack. Codice pronto all'uso con spiegazioni dettagliate.
               </p>
             </div>
           </div>
@@ -548,14 +554,24 @@ export default function ExamplesPage() {
                     <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       {example.title}
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300">{example.description}</p>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      {example.description}
+                    </p>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(example.category)}`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${getCategoryColor(
+                        example.category
+                      )}`}
+                    >
                       {example.category}
                     </span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(example.difficulty)}`}>
+                    <span
+                      className={`px-3 py-1 rounded-full text-sm font-medium ${getDifficultyColor(
+                        example.difficulty
+                      )}`}
+                    >
                       {example.difficulty}
                     </span>
                   </div>
@@ -582,13 +598,13 @@ export default function ExamplesPage() {
                         {example.category.toLowerCase()}.ts
                       </span>
                     </div>
-                    
+
                     <button className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200">
                       <Copy className="h-4 w-4" />
                       <span className="text-sm">Copia</span>
                     </button>
                   </div>
-                  
+
                   <pre className="bg-gray-900 text-gray-100 p-6 rounded-b-lg overflow-x-auto">
                     <code className="text-sm leading-relaxed">
                       {example.code}
@@ -601,13 +617,13 @@ export default function ExamplesPage() {
                   <div className="text-sm text-gray-500 dark:text-gray-400">
                     💡 Prova questo codice nel tuo progetto
                   </div>
-                  
+
                   <div className="flex space-x-4">
                     <button className="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium">
                       <Github className="h-4 w-4" />
                       <span>GitHub</span>
                     </button>
-                    
+
                     <button className="flex items-center space-x-2 text-primary-600 hover:text-primary-700 font-medium">
                       <ExternalLink className="h-4 w-4" />
                       <span>CodeSandbox</span>
@@ -626,22 +642,17 @@ export default function ExamplesPage() {
               Vuoi vedere più esempi?
             </h2>
             <p className="max-w-2xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-8">
-              Abbiamo preparato centinaia di esempi per ogni scenario di sviluppo.
-              Inizia con i quiz per scoprire i tuoi punti di forza e debolezza.
+              Abbiamo preparato centinaia di esempi per ogni scenario di
+              sviluppo. Inizia con i quiz per scoprire i tuoi punti di forza e
+              debolezza.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/quiz/frontend"
-                className="btn-primary px-8 py-3"
-              >
+              <Link href="/quiz/frontend" className="btn-primary px-8 py-3">
                 Fai un Quiz
               </Link>
-              
-              <Link
-                href="/theory"
-                className="btn-secondary px-8 py-3"
-              >
+
+              <Link href="/theory" className="btn-secondary px-8 py-3">
                 Studia la Teoria
               </Link>
             </div>
@@ -650,5 +661,5 @@ export default function ExamplesPage() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
