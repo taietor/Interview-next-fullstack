@@ -17,7 +17,11 @@ import {
   Database,
   Globe,
   Shield,
-  Cpu
+  Cpu,
+  ExternalLink,
+  Star,
+  Check,
+  X
 } from 'lucide-react'
 import Link from 'next/link'
 
@@ -70,6 +74,22 @@ export default function CopilotGuidePage() {
       icon: Lightbulb,
       difficulty: 'Intermedio',
       time: '15-25 min'
+    },
+    {
+      id: 'codespaces-web',
+      title: 'Copilot senza VS Code installato',
+      description: "Usa Copilot via browser o Codespaces quando l'estensione è bloccata al lavoro",
+      icon: Globe,
+      difficulty: 'Principiante',
+      time: '5 min'
+    },
+    {
+      id: 'alternatives',
+      title: 'Alternative a Copilot',
+      description: 'I migliori strumenti AI per VS Code quando Copilot non è disponibile',
+      icon: Star,
+      difficulty: 'Principiante',
+      time: '10 min'
     }
   ]
 
@@ -851,6 +871,474 @@ export async function GET(request: NextRequest) {
                   <li>• Documenta pattern personalizzati</li>
                   <li>• Fai code review regolari</li>
                 </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Codespaces & Web Copilot Section */}
+        <section id="codespaces-web" className="py-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                <Globe className="h-8 w-8 mr-3 text-primary-600 dark:text-primary-400" />
+                Copilot senza VS Code installato
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Se al lavoro non puoi usare l&apos;estensione Copilot in VS Code, hai due alternative
+                ufficiali: il sito <strong>github.com/copilot</strong> e <strong>GitHub Codespaces</strong>.
+                Entrambe non richiedono di collegare il tuo GitHub personale all&apos;installazione locale di VS Code.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {/* Question 1: web ask */}
+              <div className="card p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <Zap className="h-6 w-6 mr-3 text-yellow-500" />
+                  Usare Copilot dal browser (Ask / Chat)
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Sì: puoi usare Copilot direttamente da{' '}
+                  <a
+                    href="https://github.com/copilot"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary-600 dark:text-primary-400 underline hover:text-primary-700"
+                  >
+                    github.com/copilot
+                  </a>{' '}
+                  senza installare nulla sul PC aziendale. La modalità <em>Ask</em> funziona come una chat:
+                  puoi incollare porzioni di codice e porre domande. L&apos;accesso avviene tramite il tuo
+                  account GitHub personale dal browser, quindi non tocca le impostazioni di VS Code aziendali.
+                </p>
+                <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-4">
+                  <p className="text-sm text-blue-800 dark:text-blue-300 font-medium mb-2">✅ Come funziona</p>
+                  <ol className="text-sm text-blue-700 dark:text-blue-400 space-y-1 list-decimal list-inside">
+                    <li>Vai su <strong>github.com/copilot</strong> dal browser del tuo PC aziendale</li>
+                    <li>Accedi con il tuo account GitHub personale</li>
+                    <li>Incolla il codice che vuoi analizzare nella chat</li>
+                    <li>Chiedi ciò che ti serve: spiegazioni, refactoring, bug fix, esempi</li>
+                  </ol>
+                </div>
+              </div>
+
+              {/* Question 2: how to share code / Codespaces */}
+              <div className="card p-8">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+                  <GitBranch className="h-6 w-6 mr-3 text-primary-600 dark:text-primary-400" />
+                  Come far vedere il codice a Copilot senza collegare GitHub a VS Code
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">
+                  Hai tre opzioni principali, dalla più semplice alla più potente:
+                </p>
+                <div className="space-y-6">
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      1. Incolla il codice direttamente nella chat
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                      Il metodo più rapido: copia il file o la funzione e incollala nella chat di github.com/copilot.
+                      Copilot legge il testo direttamente, senza bisogno di accesso al repository.
+                    </p>
+                    <div className="bg-gray-900 text-gray-100 p-3 rounded-lg">
+                      <code className="text-sm">
+                        {`// Incolla il tuo codice nella chat e chiedi:
+// "Spiega cosa fa questa funzione"
+// "C'è un bug in questo codice?"
+// "Come posso ottimizzare questa query?"`}
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                      2. GitHub Codespaces — VS Code nel browser
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                      GitHub Codespaces ti fornisce un VS Code completo che gira <strong>nel browser</strong>,
+                      con Copilot già integrato e l&apos;intero repository disponibile. Non installi nulla sul PC
+                      aziendale e non devi collegare il tuo GitHub personale all&apos;installazione locale di VS Code.
+                    </p>
+                    <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-700 rounded-lg p-4 mb-4">
+                      <p className="text-sm text-green-800 dark:text-green-300 font-medium mb-2">🚀 Come avviare un Codespace</p>
+                      <ol className="text-sm text-green-700 dark:text-green-400 space-y-1 list-decimal list-inside">
+                        <li>Vai sulla pagina del repository su <strong>github.com</strong></li>
+                        <li>Clicca su <strong>&lt;&gt; Code</strong> → scheda <strong>Codespaces</strong></li>
+                        <li>Clicca <strong>Create codespace on main</strong></li>
+                        <li>Si apre VS Code nel browser con tutto il codice già caricato</li>
+                        <li>Copilot è disponibile nella sidebar sinistra (icona chat)</li>
+                      </ol>
+                    </div>
+                    <div className="bg-gray-900 text-gray-100 p-3 rounded-lg overflow-x-auto">
+                      <code className="text-sm whitespace-pre">{`# In Codespaces hai:
+# ✅ VS Code completo nel browser
+# ✅ Copilot Chat e autocompletamento attivi
+# ✅ Terminale integrato con Node.js, npm, git
+# ✅ Accesso a tutto il repository
+# ✅ Nessuna installazione locale richiesta`}</code>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Summary table */}
+              <div className="card p-8 bg-primary-50 dark:bg-primary-900/10 border border-primary-200 dark:border-primary-700">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  📊 Riepilogo — Quale opzione scegliere?
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left">
+                    <thead>
+                      <tr className="border-b border-gray-200 dark:border-gray-700">
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Metodo</th>
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Installa nulla</th>
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Accesso al repo completo</th>
+                        <th className="pb-3 font-semibold text-gray-900 dark:text-white">Copilot disponibile</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-600 dark:text-gray-300">
+                      <tr className="border-b border-gray-100 dark:border-gray-800">
+                        <td className="py-2 pr-4">Chat web (github.com/copilot)</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2 pr-4">❌ (solo testo incollato)</td>
+                        <td className="py-2">✅</td>
+                      </tr>
+                      <tr className="border-b border-gray-100 dark:border-gray-800">
+                        <td className="py-2 pr-4">GitHub Codespaces (browser)</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2">✅</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4">Codespaces + VS Code Desktop</td>
+                        <td className="py-2 pr-4">⚠️ VS Code già installato</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2">✅</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Alternatives to Copilot Section */}
+        <section id="alternatives" className="py-16 bg-white dark:bg-gray-800">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4 flex items-center">
+                <Star className="h-8 w-8 mr-3 text-yellow-500" />
+                Alternative a GitHub Copilot
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Se Copilot non è disponibile o hai raggiunto il limite di richieste, questi strumenti AI
+                offrono un&apos;esperienza simile — alcuni completamente gratuiti — direttamente in VS Code.
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {/* Codeium */}
+              <div className="card p-6 border-l-4 border-green-500">
+                <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Codeium</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                        Gratuito
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300">
+                        Consigliato
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      La migliore alternativa gratuita a Copilot. Offre autocompletamento AI, chat integrata
+                      in VS Code, e supporto per oltre 70 linguaggi. Nessun limite di richieste nel piano free.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Autocompletamento in tempo reale
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Chat AI nel VS Code
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Funziona anche in JetBrains, Vim
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Piano free senza limiti di richieste
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="https://codeium.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:underline whitespace-nowrap"
+                  >
+                    codeium.com <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Continue.dev */}
+              <div className="card p-6 border-l-4 border-purple-500">
+                <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Continue.dev</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                        Open Source
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      Estensione VS Code open source che ti permette di scegliere il modello AI che preferisci:
+                      Claude, GPT-4, Gemini, o modelli locali tramite Ollama. Ideale se vuoi totale controllo
+                      sul modello usato.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Connetti Claude, GPT-4, Gemini
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Modelli locali con Ollama (offline)
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Chat + autocompletamento in VS Code
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Dati non condivisi (privacy)
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="https://continue.dev"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:underline whitespace-nowrap"
+                  >
+                    continue.dev <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Amazon Q Developer */}
+              <div className="card p-6 border-l-4 border-orange-500">
+                <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Amazon Q Developer</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                        Piano Free
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      Ex AWS CodeWhisperer, ora potenziato con chat AI. Il piano gratuito include
+                      autocompletamento illimitato e fino a 50 chat al mese. Estensione disponibile
+                      per VS Code e JetBrains.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Autocompletamento illimitato (free)
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        50 chat/mese nel piano free
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Ottimo per progetti AWS
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+                        <X className="h-4 w-4 flex-shrink-0" />
+                        Richiede account AWS
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="https://aws.amazon.com/q/developer"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:underline whitespace-nowrap"
+                  >
+                    aws.amazon.com/q <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Tabnine */}
+              <div className="card p-6 border-l-4 border-blue-500">
+                <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Tabnine</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-300">
+                        Free / Pro
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      Uno dei più longevi tool AI per coding. Il piano free offre autocompletamento di base.
+                      Punto di forza: può girare <strong>completamente in locale</strong>, ottimo per ambienti
+                      aziendali con restrizioni sulla privacy dei dati.
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Può girare completamente offline
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Privacy-first (no dati inviati)
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        VS Code, JetBrains, Vim
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+                        <X className="h-4 w-4 flex-shrink-0" />
+                        Chat AI solo nel piano Pro
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="https://www.tabnine.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:underline whitespace-nowrap"
+                  >
+                    tabnine.com <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Ollama + Continue (local) */}
+              <div className="card p-6 border-l-4 border-gray-500">
+                <div className="flex items-start justify-between flex-wrap gap-4">
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white">Ollama + Continue (locale)</h3>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
+                        100% Gratuito
+                      </span>
+                      <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300">
+                        Offline
+                      </span>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                      La soluzione più privata: modelli AI che girano sul tuo PC, zero costi, zero limiti,
+                      nessun dato inviato online. Installa Ollama per scaricare modelli come Llama 3, CodeGemma,
+                      DeepSeek Coder, poi collegalo a Continue.dev in VS Code.
+                    </p>
+                    <div className="bg-gray-900 text-gray-100 p-3 rounded-lg overflow-x-auto mb-4">
+                      <code className="text-sm whitespace-pre">{`# 1. Installa Ollama (ollama.com)
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 2. Scarica un modello per il coding
+ollama pull codellama
+# oppure: ollama pull deepseek-coder
+
+# 3. Installa l'estensione Continue.dev su VS Code
+# 4. In Continue, scegli "Ollama" come provider`}</code>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Completamente offline e gratuito
+                      </div>
+                      <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                        <Check className="h-4 w-4 flex-shrink-0" />
+                        Nessun limite di richieste
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+                        <X className="h-4 w-4 flex-shrink-0" />
+                        Richiede GPU o PC potente
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-400 dark:text-gray-500">
+                        <X className="h-4 w-4 flex-shrink-0" />
+                        Qualità inferiore ai cloud model
+                      </div>
+                    </div>
+                  </div>
+                  <a
+                    href="https://ollama.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:underline whitespace-nowrap"
+                  >
+                    ollama.com <ExternalLink className="h-3 w-3" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Comparison table */}
+              <div className="card p-8 bg-gray-50 dark:bg-gray-900/50">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+                  📊 Confronto rapido
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm text-left">
+                    <thead>
+                      <tr className="border-b border-gray-200 dark:border-gray-700">
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Strumento</th>
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Costo</th>
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Chat in VS Code</th>
+                        <th className="pb-3 pr-4 font-semibold text-gray-900 dark:text-white">Autocomplete</th>
+                        <th className="pb-3 font-semibold text-gray-900 dark:text-white">Privacy</th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-gray-600 dark:text-gray-300 divide-y divide-gray-100 dark:divide-gray-800">
+                      <tr>
+                        <td className="py-2 pr-4 font-medium">Codeium</td>
+                        <td className="py-2 pr-4">Gratis</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2 pr-4">✅ Illimitato</td>
+                        <td className="py-2">⭐⭐⭐</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 font-medium">Continue + Claude/GPT</td>
+                        <td className="py-2 pr-4">API key (pay-as-you-go)</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2">⭐⭐⭐</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 font-medium">Amazon Q Developer</td>
+                        <td className="py-2 pr-4">Gratis / Pro</td>
+                        <td className="py-2 pr-4">✅ (50/mese free)</td>
+                        <td className="py-2 pr-4">✅ Illimitato</td>
+                        <td className="py-2">⭐⭐⭐</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 font-medium">Tabnine</td>
+                        <td className="py-2 pr-4">Gratis / Pro</td>
+                        <td className="py-2 pr-4">⚠️ Solo Pro</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2">⭐⭐⭐⭐⭐</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2 pr-4 font-medium">Ollama + Continue</td>
+                        <td className="py-2 pr-4">100% Gratis</td>
+                        <td className="py-2 pr-4">✅</td>
+                        <td className="py-2 pr-4">✅ Illimitato</td>
+                        <td className="py-2">⭐⭐⭐⭐⭐</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
+                  💡 <strong>Consiglio:</strong> inizia con <strong>Codeium</strong> (zero configurazione, subito operativo)
+                  e se vuoi più controllo prova <strong>Continue.dev</strong> con i tuoi modelli preferiti.
+                </p>
               </div>
             </div>
           </div>
